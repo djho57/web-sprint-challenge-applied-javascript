@@ -62,20 +62,17 @@ const cardAppender = (selector) => {
     //response.data.articles.topic.array
     const categories = response.data.articles
     console.log(categories)
-    for (const article in categories){
-        // console.log(article);
-        const obj = categories[article];
-        const value = obj.values();
-        console.log(obj)
-        obj.forEach(element => {
-          return element
-          document.querySelector(selector).appendChild(Card(element))
-        })
-      // for (const item of value){
-      //   console.log(item);
-      //   return item;
-      // }
+
+    let newArray = [];
+    for (const article of Object.values(categories)){
+      // console.log(article)
+      for(const item of article)
+      newArray.push(item);
     }
+    console.log(newArray);
+    newArray.forEach(element => {
+      document.querySelector(selector).appendChild(Card(element));
+    })
   })
 }
   
